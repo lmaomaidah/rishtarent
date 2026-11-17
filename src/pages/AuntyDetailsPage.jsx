@@ -76,7 +76,7 @@ function AuntyDetailsPage() {
       <div className="two-col">
         <div>
           <section aria-labelledby="about-heading">
-            <h2 id="about-heading" className="ribbon">About her</h2>
+            <h2 id="about-heading" className="ribbon">About</h2>
             <p className={showFull || aunty.bio.length <= 300 ? 'bio' : 'bio bio--clamped'}>{aunty.bio}</p>
             {aunty.bio.length > 300 && (
               <button
@@ -99,7 +99,7 @@ function AuntyDetailsPage() {
           </section>
 
           <section aria-labelledby="areas-heading">
-            <h2 id="areas-heading" className="ribbon">Where she visits</h2>
+            <h2 id="areas-heading" className="ribbon">Areas visited</h2>
             <ul className="chips">
               {aunty.areasServed.map((a) => (
                 <li key={a} className={a === aunty.homeArea ? 'chip--home' : ''}>
@@ -107,7 +107,7 @@ function AuntyDetailsPage() {
                 </li>
               ))}
             </ul>
-            <p>No travel charge in {aunty.homeArea}. Anywhere else she visits adds {formatRs(TRAVEL_CHARGE)}.</p>
+            <p>No travel charge in {aunty.homeArea}. Any other area adds {formatRs(TRAVEL_CHARGE)}.</p>
 
             <div className="field">
               <label htmlFor="your-area">Your area</label>

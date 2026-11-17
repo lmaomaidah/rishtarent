@@ -42,7 +42,7 @@ export function checkSelection(booking, aunties) {
 
   const slots = checkSlots(aunty)
   if (!slots.ok) {
-    return { ok: false, message: `${slots.message} Your saved booking can't go ahead with her.` }
+    return { ok: false, message: `${slots.message} Your saved booking can't go ahead.` }
   }
 
   if (!aunty.packages.some((p) => p.id === booking.packageId)) {

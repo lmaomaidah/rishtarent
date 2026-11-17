@@ -5,8 +5,8 @@ export function getLabels(aunty) {
       key: 'verified',
       label: aunty.verified ? 'Visited in person by our team' : 'New here, not yet visited by our team',
       help: aunty.verified
-        ? 'Someone from RishtaRent met this aunty at her home and spoke to two families she has worked with.'
-        : 'She has registered with us but we have not met her in person yet. Her prices are usually lower.',
+        ? 'Someone from RishtaRent visited at home and spoke to two families from past rishtas.'
+        : 'Registered with us, but our team has not met them in person yet. Prices are usually lower.',
     },
     {
       key: 'rishtas',

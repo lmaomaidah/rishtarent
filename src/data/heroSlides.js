@@ -26,4 +26,11 @@ export const heroSlides = [
     banner: 'Book before Monday',
     cta: 'Meet Tahira Baji',
   },
+  {
+    auntyId: 'mehmood-sahab',
+    cutout: '/aunties/mehmood-cut.png',
+    question: 'Think only aunties do this?',
+    banner: 'Meet the uncles',
+    cta: 'Meet Mehmood Sahab',
+  },
 ]

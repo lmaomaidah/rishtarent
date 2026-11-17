@@ -20,7 +20,7 @@ export function checkServiceArea(aunty, area) {
   if (!aunty.areasServed.includes(area)) {
     return {
       ok: false,
-      message: `${aunty.name} does not visit ${area}. She visits: ${aunty.areasServed.join(', ')}.`,
+      message: `${aunty.name} does not visit ${area}. Visits: ${aunty.areasServed.join(', ')}.`,
     }
   }
   return { ok: true, message: '' }

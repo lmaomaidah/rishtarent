@@ -14,7 +14,7 @@ function SummaryPanel({ packageId, summary, area, children }) {
 
   let travelRow = 'Travel: choose your area to see'
   if (area && summary.travelCharge > 0) travelRow = `Travel to ${area}: ${formatRs(summary.travelCharge)}`
-  if (area && summary.travelCharge === 0) travelRow = 'Travel: Rs 0 (her home area)'
+  if (area && summary.travelCharge === 0) travelRow = 'Travel: Rs 0 (home area)'
 
   return (
     <section id="summary" className="panel summary" aria-labelledby="summary-heading">

@@ -70,7 +70,7 @@ Open "Demo controls (for testing)" at the bottom of any page first.
 - Slots do not go down after a booking.
 - The 48-hour check and the season dates use the device clock.
 - The phone number format is checked but not verified.
-- 4 of 11 aunties have photos. The student supplied them. The other 7 use CSS initials.
+- 11 of 13 listings (11 aunties, 2 uncles) have photos supplied by the student, used with permission. Kulsoom Aunty and Samina Chachi use CSS initials.
 
 ## Concept map
 
