@@ -1660,3 +1660,9 @@ form > .btn {
 .details-header h1 {
   overflow-wrap: anywhere;
 }
+
+/* initials stay on one line inside the circle */
+.avatar {
+  overflow-wrap: normal;
+  white-space: nowrap;
+}

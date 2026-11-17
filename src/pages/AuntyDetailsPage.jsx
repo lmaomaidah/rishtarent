@@ -55,7 +55,7 @@ function AuntyDetailsPage() {
           {full ? (
             <p className="badge badge--error">Fully booked this week</p>
           ) : (
-            <p className="badge badge--ok">{aunty.slotsLeft} visits left this week</p>
+            <p className="badge badge--ok">{aunty.slotsLeft} {aunty.slotsLeft === 1 ? 'visit' : 'visits'} left this week</p>
           )}
         </div>
       </header>
