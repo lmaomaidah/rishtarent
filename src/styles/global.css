@@ -1637,3 +1637,31 @@ form > .btn {
     grid-template-columns: 1fr 1fr;
   }
 }
+
+/* M5 additions */
+.demo-controls {
+  margin-bottom: var(--s3);
+  padding: var(--s3);
+  border: 3px dashed var(--muted);
+  border-radius: 12px;
+}
+
+.demo-controls summary {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* long bio shows about 5 lines until "Read full profile" is pressed */
+.bio--clamped {
+  max-height: 7.5em;
+  overflow: hidden;
+}
+
+/* let the header text shrink so long names wrap at 390px */
+.details-header > div {
+  min-width: 0;
+}
+
+.details-header h1 {
+  overflow-wrap: anywhere;
+}

@@ -18,7 +18,7 @@ const emptyDemo = { failLoad: false, emptyData: false, fullyBookedId: '' }
 // read once at startup; bad JSON or missing keys fall back to the defaults
 function readSaved() {
   try {
-    const data = JSON.parse(localStorage.getItem(STORAGE_KEY))
+    const data = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {} // null (nothing saved) becomes {}
     const booking = {
       ...emptyBooking,
       ...data.booking,

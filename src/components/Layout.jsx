@@ -2,10 +2,11 @@ import { useEffect } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { useBooking } from '../context/BookingContext.js'
 import HeroSlider from './HeroSlider.jsx'
+import DemoControls from './DemoControls.jsx'
 
 function Layout() {
   const { pathname } = useLocation()
-  const { selectedAunty } = useBooking()
+  const { selectedAunty, selectionCheck } = useBooking()
   const isHome = pathname === '/'
 
   // new page, start at the top
@@ -38,7 +39,7 @@ function Layout() {
             <li><NavLink to="/aunties"><small>Meet the</small>Aunties</NavLink></li>
             <li>
               <NavLink to="/booking">
-                <small>Your booking</small>{selectedAunty ? 'Started' : 'Empty'}
+                <small>Your booking</small>{!selectionCheck.ok ? 'Fix needed' : selectedAunty ? 'Started' : 'Empty'}
               </NavLink>
             </li>
             <li><NavLink to="/review"><small>Check your</small>Total</NavLink></li>
@@ -56,6 +57,7 @@ function Layout() {
       </main>
       <footer className="site-footer">
         <div className="container">
+          <DemoControls />
           <p>RishtaRent is a student project. Bookings are simulated and no money is taken.</p>
         </div>
       </footer>

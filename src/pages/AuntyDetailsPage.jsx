@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useBooking } from '../context/BookingContext.js'
 import { AREAS } from '../data/catalog.js'
@@ -18,6 +19,7 @@ function AuntyDetailsPage() {
     aunties, booking, summary, selectedAunty, setFilters,
     selectPackage, addAddOn, removeAddOn, setAddOnQty, updateForm,
   } = useBooking()
+  const [showFull, setShowFull] = useState(false)
   const aunty = aunties.find((a) => a.id === id)
 
   if (!aunty) {
@@ -62,7 +64,17 @@ function AuntyDetailsPage() {
         <div>
           <section aria-labelledby="about-heading">
             <h2 id="about-heading" className="ribbon">About her</h2>
-            <p>{aunty.bio}</p>
+            <p className={showFull ? '' : 'bio--clamped'}>{aunty.bio}</p>
+            {aunty.bio.length > 300 && (
+              <button
+                type="button"
+                className="btn btn--secondary"
+                aria-expanded={showFull}
+                onClick={() => setShowFull((open) => !open)}
+              >
+                {showFull ? 'Show less' : 'Read full profile'}
+              </button>
+            )}
             <p>Speaks: {aunty.languages.join(', ')}</p>
             <p>Good with: {aunty.specialities.join(', ')}</p>
           </section>

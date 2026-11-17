@@ -3,7 +3,7 @@ import StatusMessage from './StatusMessage.jsx'
 
 // shows loading or error instead of the page until the list is ready
 function DataGate({ children }) {
-  const { status, reload } = useBooking()
+  const { status, reload, demo } = useBooking()
 
   if (status === 'loading') {
     return (
@@ -19,6 +19,9 @@ function DataGate({ children }) {
         title="We couldn't load the aunties list"
         text="This can be a connection problem. Your booking so far is saved."
       >
+        {demo.failLoad && (
+          <p>Demo: "Make the aunties list fail to load" is switched on in Demo controls at the bottom of the page.</p>
+        )}
         <button type="button" className="btn" onClick={reload}>Try again</button>
       </StatusMessage>
     )
