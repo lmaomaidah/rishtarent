@@ -13,9 +13,11 @@ function LabelWithHelp({ label, help }) {
         className="label-help__btn"
         aria-expanded={open}
         aria-controls={helpId}
+        aria-label={`What does "${label}" mean?`}
+        title="What does this mean?"
         onClick={() => setOpen((o) => !o)}
       >
-        What does this mean?
+        ?
       </button>
       {open && <span id={helpId} className="label-help__text">{help}</span>}
     </span>

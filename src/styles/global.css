@@ -1204,7 +1204,7 @@ body {
     repeating-conic-gradient(from -90deg at 50% -10%, rgba(255, 255, 255, 0.4) 0 7deg, transparent 7deg 14deg),
     radial-gradient(rgba(59, 42, 30, 0.06) 1px, transparent 1px),
     radial-gradient(rgba(59, 42, 30, 0.04) 1px, transparent 1px);
-  background-size: 100% 900px, 6px 6px, 14px 14px;
+  background-size: 100% 100%, 6px 6px, 14px 14px; /* rays stretch over the whole page */
   background-repeat: no-repeat, repeat, repeat;
 }
 
@@ -1648,7 +1648,7 @@ form > .btn {
 
 /* long bio shows about 5 lines until "Read full profile" is pressed */
 .bio--clamped {
-  max-height: 7.5em;
+  max-height: 8.5em; /* exactly 5 lines at line-height 1.7 */
   overflow: hidden;
 }
 
@@ -1665,4 +1665,198 @@ form > .btn {
 .avatar {
   overflow-wrap: normal;
   white-space: nowrap;
+}
+
+/* breathing room above each ribbon section title on inner pages */
+main h2.ribbon {
+  margin-top: var(--s5);
+  margin-bottom: var(--s3);
+}
+
+/* the rays layer needs the page to be at least screen height */
+html {
+  min-height: 100%;
+}
+
+/* ===== Livelier profile header and description text ===== */
+
+/* round "?" help button (replaces the underlined text link) */
+.label-help__btn {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  margin-left: 4px;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  background: var(--mustard);
+  color: var(--ink);
+  font: 800 0.9rem Nunito, sans-serif;
+  text-decoration: none;
+  vertical-align: middle;
+}
+
+.label-help__btn[aria-expanded="true"] {
+  background: var(--navy);
+  color: #fff;
+}
+
+/* profile header sits on its own cream card */
+.profile {
+  margin-top: var(--s4);
+  padding: var(--s4);
+  background: var(--panel);
+  border: 3px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  align-items: start;
+}
+
+/* phones: avatar on top, text gets the full width */
+.profile {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s3);
+}
+
+.profile .avatar--large {
+  width: 96px;
+  height: 96px;
+  font-size: 2.2rem;
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.profile__main {
+  display: grid;
+  gap: var(--s3);
+  justify-items: start;
+}
+
+.profile__main h1 {
+  margin: 0;
+  color: var(--navy);
+}
+
+.profile__tagline {
+  margin: 0;
+  font-family: Pacifico, cursive;
+  font-size: 1.35rem;
+  line-height: 1.4;
+  color: var(--orange-dark);
+}
+
+/* tilted rubber stamp for "Visited in person" */
+.stamp {
+  margin: 0;
+  padding: var(--s1) var(--s3);
+  border: 3px double var(--teal-dark);
+  border-radius: 8px;
+  color: var(--teal-dark);
+  font-family: "Alfa Slab One", serif;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  transform: rotate(-2deg);
+}
+
+.stamp--new {
+  border-color: var(--muted);
+  color: var(--muted);
+}
+
+/* number tiles: big slab number over a small caption */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: var(--s2);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stat {
+  display: grid;
+  align-content: start;
+  gap: 2px;
+  padding: var(--s2) var(--s3);
+  background: repeating-linear-gradient(90deg, var(--stripe-a) 0 14px, var(--stripe-b) 14px 16px);
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  font-size: 0.9rem;
+}
+
+.stat strong {
+  font-family: "Alfa Slab One", serif;
+  font-weight: 400;
+  font-size: 1.8rem;
+  line-height: 1.1;
+  color: var(--navy);
+}
+
+/* bio: big script first letter, like an old magazine */
+.bio {
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.bio::first-letter {
+  float: left;
+  margin: 6px 8px 0 0;
+  font-family: Pacifico, cursive;
+  font-size: 3.2rem;
+  line-height: 0.9;
+  color: var(--orange-dark);
+}
+
+/* small heading above a row of chips */
+.mini-label {
+  margin: var(--s3) 0 var(--s2);
+  font-family: "Alfa Slab One", serif;
+  font-weight: 400;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--navy);
+}
+
+/* pill chips for areas, languages and specialities */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+  margin: 0 0 var(--s3);
+  padding: 0;
+  list-style: none;
+}
+
+.chips li {
+  padding: 2px var(--s3);
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.chips--orange li {
+  background: var(--orange-dark);
+  color: #fff;
+}
+
+.chips .chip--home {
+  background: var(--mustard);
+}
+
+@media (min-width: 700px) {
+  .profile {
+    grid-template-columns: auto 1fr;
+    gap: var(--s4);
+  }
+
+  .profile .avatar--large {
+    width: 120px;
+    height: 120px;
+    font-size: 2.8rem;
+  }
 }

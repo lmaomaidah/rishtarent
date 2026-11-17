@@ -37,21 +37,34 @@ function AuntyDetailsPage() {
   const areaCheck = checkServiceArea(aunty, area)
   const areaProblem = area !== '' && !areaCheck.ok
   const otherAunties = areaProblem ? findAuntiesForArea(aunties, area).slice(0, 3) : []
+  const labels = getLabels(aunty) // [verified, rishtas, rating]
   const canContinue = isThis && !full && !areaProblem && booking.packageId
 
   return (
     <>
-      <header className="details-header">
+      <header className="details-header profile">
         <Avatar name={aunty.name} photo={aunty.photo} size="large" />
-        <div>
+        <div className="profile__main">
           <h1>{aunty.name}</h1>
-          <p>{aunty.tagline}</p>
-          <ul className="details-labels">
-            {getLabels(aunty).map((item) => (
-              <li key={item.key}><LabelWithHelp label={item.label} help={item.help} /></li>
+          <p className="profile__tagline">"{aunty.tagline}"</p>
+
+          {/* the verified label is a tilted stamp; the other two become number tiles */}
+          <p className={aunty.verified ? 'stamp' : 'stamp stamp--new'}>
+            <LabelWithHelp label={labels[0].label} help={labels[0].help} />
+          </p>
+          <ul className="stats">
+            {labels.slice(1).map((item) => (
+              <li key={item.key} className="stat">
+                <strong>{item.value}</strong>
+                <LabelWithHelp label={item.caption} help={item.help} />
+              </li>
             ))}
+            <li className="stat">
+              <strong>{aunty.yearsExperience === null ? '?' : aunty.yearsExperience}</strong>
+              <span>{aunty.yearsExperience === null ? 'experience: not provided' : 'years experience'}</span>
+            </li>
           </ul>
-          <p>Experience: {aunty.yearsExperience === null ? 'Not provided' : `${aunty.yearsExperience} years`}</p>
+
           {full ? (
             <p className="badge badge--error">Fully booked this week</p>
           ) : (
@@ -64,7 +77,7 @@ function AuntyDetailsPage() {
         <div>
           <section aria-labelledby="about-heading">
             <h2 id="about-heading" className="ribbon">About her</h2>
-            <p className={showFull ? '' : 'bio--clamped'}>{aunty.bio}</p>
+            <p className={showFull || aunty.bio.length <= 300 ? 'bio' : 'bio bio--clamped'}>{aunty.bio}</p>
             {aunty.bio.length > 300 && (
               <button
                 type="button"
@@ -75,15 +88,23 @@ function AuntyDetailsPage() {
                 {showFull ? 'Show less' : 'Read full profile'}
               </button>
             )}
-            <p>Speaks: {aunty.languages.join(', ')}</p>
-            <p>Good with: {aunty.specialities.join(', ')}</p>
+            <h3 className="mini-label">Speaks</h3>
+            <ul className="chips">
+              {aunty.languages.map((l) => <li key={l}>{l}</li>)}
+            </ul>
+            <h3 className="mini-label">Good with</h3>
+            <ul className="chips chips--orange">
+              {aunty.specialities.map((sp) => <li key={sp}>{sp}</li>)}
+            </ul>
           </section>
 
           <section aria-labelledby="areas-heading">
             <h2 id="areas-heading" className="ribbon">Where she visits</h2>
-            <ul>
+            <ul className="chips">
               {aunty.areasServed.map((a) => (
-                <li key={a}>{a}</li>
+                <li key={a} className={a === aunty.homeArea ? 'chip--home' : ''}>
+                  {a}{a === aunty.homeArea && ' (home, no travel charge)'}
+                </li>
               ))}
             </ul>
             <p>No travel charge in {aunty.homeArea}. Anywhere else she visits adds {formatRs(TRAVEL_CHARGE)}.</p>

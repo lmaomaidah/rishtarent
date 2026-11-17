@@ -11,11 +11,15 @@ export function getLabels(aunty) {
     {
       key: 'rishtas',
       label: `${aunty.rishtasCompleted} rishtas arranged`,
+      value: aunty.rishtasCompleted, // big number on the details page stat tile
+      caption: 'rishtas arranged',
       help: 'The number of engagements this aunty has told us about. We confirm it for visited aunties only.',
     },
     {
       key: 'rating',
       label: `${aunty.rating} out of 5 from families`,
+      value: `${aunty.rating}/5`,
+      caption: 'rating from families',
       help: 'The average score given by families after a visit. 5 is the best.',
     },
   ]
