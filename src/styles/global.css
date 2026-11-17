@@ -1512,3 +1512,32 @@ form > .btn {
 .ribbon-nav a {
   overflow-wrap: normal;
 }
+
+/* M4 additions */
+.label-help__btn {
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--orange-dark);
+  font: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.label-help__text {
+  display: block;
+  margin-top: var(--s2);
+  padding: var(--s2) var(--s3);
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--ink);
+}
+
+.details-labels {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

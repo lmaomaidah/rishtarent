@@ -1,10 +1,16 @@
 import { Link } from 'react-router-dom'
 import Avatar from './Avatar.jsx'
+import LabelWithHelp from './LabelWithHelp.jsx'
+import { PACKAGE_TYPES } from '../data/catalog.js'
+import { getLabels } from '../rules/labelHelp.js'
 import { formatRs, getFromPrice, getTravelCharge, TRAVEL_CHARGE } from '../rules/pricing.js'
 
 function AuntyCard({ aunty, area, isSelected }) {
   const full = aunty.slotsLeft === 0
   const travel = getTravelCharge(aunty, area)
+  // what the cheapest package gives you, in one short line
+  const cheapest = aunty.packages.reduce((a, b) => (b.price < a.price ? b : a))
+  const included = PACKAGE_TYPES[cheapest.id].includes.slice(0, 2).join(', ')
 
   return (
     <article className={`panel card${full ? ' card--unavailable' : ''}`}>
@@ -26,11 +32,11 @@ function AuntyCard({ aunty, area, isSelected }) {
 
       <ul className="card__facts">
         <li>Visits: {aunty.areasServed.join(', ')}</li>
-        <li>Speaks: {aunty.languages.join(', ')}</li>
+        <li>Cheapest package includes: {included}</li>
         <li>Good with: {aunty.specialities.join(', ')}</li>
-        <li>{aunty.rating} out of 5 from families</li>
-        <li>{aunty.rishtasCompleted} rishtas arranged</li>
-        <li>{aunty.verified ? 'Visited in person by our team' : 'New here, not yet visited by our team'}</li>
+        {getLabels(aunty).map((item) => (
+          <li key={item.key}><LabelWithHelp label={item.label} help={item.help} /></li>
+        ))}
       </ul>
 
       <div className="card__price">

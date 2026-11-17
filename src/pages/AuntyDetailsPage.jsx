@@ -5,6 +5,8 @@ import { formatRs, TRAVEL_CHARGE } from '../rules/pricing.js'
 import { checkServiceArea, findAuntiesForArea } from '../rules/eligibility.js'
 import { checkSlots } from '../rules/capacity.js'
 import Avatar from '../components/Avatar.jsx'
+import LabelWithHelp from '../components/LabelWithHelp.jsx'
+import { getLabels } from '../rules/labelHelp.js'
 import StatusMessage from '../components/StatusMessage.jsx'
 import PackagePicker from '../components/PackagePicker.jsx'
 import AddOnPicker from '../components/AddOnPicker.jsx'
@@ -42,8 +44,11 @@ function AuntyDetailsPage() {
         <div>
           <h1>{aunty.name}</h1>
           <p>{aunty.tagline}</p>
-          <p>{aunty.rating} out of 5 from families · {aunty.rishtasCompleted} rishtas arranged</p>
-          <p>{aunty.verified ? 'Visited in person by our team' : 'New here, not yet visited by our team'}</p>
+          <ul className="details-labels">
+            {getLabels(aunty).map((item) => (
+              <li key={item.key}><LabelWithHelp label={item.label} help={item.help} /></li>
+            ))}
+          </ul>
           <p>Experience: {aunty.yearsExperience === null ? 'Not provided' : `${aunty.yearsExperience} years`}</p>
           {full ? (
             <p className="badge badge--error">Fully booked this week</p>

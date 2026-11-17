@@ -52,6 +52,8 @@ function AuntiesPage() {
               <button type="button" className="btn" onClick={clearFilters}>Clear filters</button>
             </StatusMessage>
           ) : (
+            <>
+            <h2 className="visually-hidden">Aunties</h2>
             <div className="cards-grid">
               {sorted.map((aunty) => (
                 <AuntyCard
@@ -62,6 +64,7 @@ function AuntiesPage() {
                 />
               ))}
             </div>
+            </>
           )}
         </>
       )}
