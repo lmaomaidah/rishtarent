@@ -1,10 +1,13 @@
+import { useState } from 'react'
 import { useBooking } from '../context/BookingContext.js'
+import { isSeasonOn } from '../rules/events.js'
 import { defaultFilters, filterAndSort } from '../rules/listing.js'
 import AuntyCard from '../components/AuntyCard.jsx'
 import ListControls from '../components/ListControls.jsx'
 import StatusMessage from '../components/StatusMessage.jsx'
 
 function AuntiesPage() {
+  const [seasonOn] = useState(() => isSeasonOn(new Date())) // checked once when the page opens
   const { aunties, booking, filters, setFilters, updateForm, reload } = useBooking()
   const area = booking.form.area
 
@@ -25,6 +28,12 @@ function AuntiesPage() {
   return (
     <>
       <h1>Find an aunty</h1>
+      {seasonOn && (
+        <p className="sale-strip">
+          <strong>Shaadi season sale:</strong> 10% off every package for visits until 31 January.
+          Fridays in November get another Rs 1,000 off.
+        </p>
+      )}
 
       {aunties.length === 0 ? (
         <StatusMessage

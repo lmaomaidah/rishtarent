@@ -1541,3 +1541,99 @@ form > .btn {
   margin: 0;
   padding: 0;
 }
+
+/* ===== Shaadi season events ===== */
+.events {
+  margin-bottom: var(--s5);
+}
+
+.events__grid {
+  display: grid;
+  gap: var(--s4);
+  margin-top: var(--s3);
+}
+
+/* each event looks like a ticket: notches cut out of both sides, dashed tear line */
+.event {
+  position: relative;
+  display: grid;
+  justify-items: start;
+  gap: var(--s2);
+  padding: var(--s4);
+  background:
+    radial-gradient(circle at 0 50%, var(--paper) 14px, transparent 15px),
+    radial-gradient(circle at 100% 50%, var(--paper) 14px, transparent 15px),
+    var(--panel);
+  border: 3px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.event p {
+  margin: 0;
+}
+
+.event__title {
+  margin: 0;
+  font-family: Pacifico, cursive;
+  font-weight: 400;
+  font-size: 1.8rem;
+  color: var(--orange-dark);
+}
+
+.event--friday {
+  background:
+    radial-gradient(circle at 0 50%, var(--paper) 14px, transparent 15px),
+    radial-gradient(circle at 100% 50%, var(--paper) 14px, transparent 15px),
+    repeating-linear-gradient(90deg, var(--stripe-a) 0 14px, var(--stripe-b) 14px 16px);
+}
+
+/* navy countdown tile, like a flip clock */
+.countdown {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s2);
+  padding: var(--s2) var(--s3);
+  background: var(--navy);
+  color: #fff;
+  border: 3px solid var(--ink);
+  border-radius: 12px;
+  font-family: "Alfa Slab One", serif;
+  text-transform: uppercase;
+}
+
+.countdown strong {
+  font-size: 2.6rem;
+  line-height: 1;
+  font-weight: 400;
+  color: var(--mustard);
+}
+
+.event__quote {
+  margin: var(--s2) 0 0;
+  padding-left: var(--s3);
+  border-left: 4px solid var(--orange-dark);
+  font-style: italic;
+  font-weight: 700;
+}
+
+.event__quote span {
+  font-style: normal;
+  color: var(--orange-dark);
+}
+
+/* sale banner on the aunties list */
+.sale-strip {
+  margin: 0 0 var(--s4);
+  padding: var(--s3) var(--s4);
+  background: var(--mustard);
+  border: 3px dashed var(--ink);
+  border-radius: 12px;
+  outline: 4px solid var(--mustard);
+}
+
+@media (min-width: 900px) {
+  .events__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

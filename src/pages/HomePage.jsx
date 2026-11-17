@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useBooking } from '../context/BookingContext.js'
+import SeasonEvents from '../components/SeasonEvents.jsx'
 
 function HomePage() {
   const { aunties, status } = useBooking()
@@ -19,6 +20,8 @@ function HomePage() {
         </p>
       </section>
 
+      <SeasonEvents />
+
       <div className="home-columns paper-sheet">
         <aside className="home-side">
           <div className="side-panel side-panel--brown">
@@ -34,11 +37,6 @@ function HomePage() {
               {status === 'ready' ? `${freeCount} aunties free` : 'Checking…'}
             </p>
             <Link to="/aunties" className="btn">Find an aunty</Link>
-          </div>
-          <div className="side-panel side-panel--orange">
-            <p className="side-panel__title">Shaadi season deals</p>
-            <p>Haww! Still no rishta in peak shaadi season? Aunty feels sorry for you: 10% off any package for visits from October to January.</p>
-            <p>Blessed Friday: Rs 1,000 off visits on Fridays in November. Only a shaitan says 'Black Friday'. — Aunty</p>
           </div>
         </aside>
 
