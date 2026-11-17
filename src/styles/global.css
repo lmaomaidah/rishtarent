@@ -1,0 +1,131 @@
+/* Tokens */
+:root {
+  --paper: #F6EBC8;
+  --panel: #FFF8E3;
+  --ink: #3B2A1E;
+  --muted: #6B5443;
+  --orange: #D2642A;       /* decoration and large fills only */
+  --orange-dark: #A8481A;  /* buttons, ribbons, links */
+  --teal: #4F7A94;
+  --teal-dark: #35596F;    /* focus ring, selected */
+  --mustard: #D9A93A;
+  --ok: #2F6B3A;
+  --error: #A3231A;
+  --radius: 18px;
+  --shadow: 6px 6px 0 var(--ink);
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 16px;
+  --s4: 24px;
+  --s5: 40px;
+}
+
+/* Base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 112.5%;
+}
+
+body {
+  margin: 0;
+  font-family: Nunito, system-ui, sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--ink);
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(rgba(59, 42, 30, 0.06) 1px, transparent 1px),
+    radial-gradient(rgba(59, 42, 30, 0.04) 1px, transparent 1px);
+  background-size: 6px 6px, 14px 14px;
+  background-position: 0 0, 3px 7px;
+  overflow-wrap: anywhere;
+}
+
+[lang="ur"] {
+  font-family: "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", serif;
+}
+
+h1 {
+  font-family: Pacifico, cursive;
+  font-weight: 400;
+}
+
+h2,
+h3 {
+  font-family: Nunito, system-ui, sans-serif;
+  font-weight: 800;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: var(--orange-dark);
+  text-decoration: underline;
+}
+
+:focus-visible {
+  outline: 4px solid var(--teal-dark);
+  outline-offset: 3px;
+}
+
+/* Layout */
+.container {
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-inline: var(--s3);
+}
+
+/* Panel: the card look used everywhere */
+.panel {
+  background: var(--panel);
+  border: 3px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: var(--s4);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 var(--s4);
+  border: 3px solid var(--ink);
+  border-radius: 12px;
+  background: var(--orange-dark);
+  color: #fff;
+  box-shadow: 4px 4px 0 var(--ink);
+  font: 800 1rem Nunito, system-ui, sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.btn:focus-visible {
+  box-shadow: 0 0 0 3px var(--paper);
+}
+
+/* Mobile first: 390px is the default */
+@media (min-width: 700px) {
+  :root {
+    --shadow: 6px 6px 0 var(--ink);
+  }
+}
+
+@media (max-width: 699px) {
+  :root {
+    --shadow: 4px 4px 0 var(--ink);
+  }
+}
