@@ -142,6 +142,7 @@ function AuntyDetailsPage() {
               <li>Candidate must be 18+</li>
               <li>Book at least 48 hours ahead</li>
               <li>{formatRs(TRAVEL_CHARGE)} travel outside {aunty.homeArea}</li>
+              <li>10% off packages for visits from October to January. Rs 1,000 off on Fridays in November.</li>
             </ul>
           </section>
         </div>

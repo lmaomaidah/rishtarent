@@ -1,4 +1,5 @@
 // the four featured aunties on the home page slider (only the ones with photos)
+// cutout: a photo with the background removed, shown full-figure like an old ad
 export const heroSlides = [
   {
     auntyId: 'zubaida-hashmi',
@@ -8,6 +9,7 @@ export const heroSlides = [
   },
   {
     auntyId: 'nasreen-qureshi',
+    cutout: '/aunties/nasreen-cut.png',
     question: 'Want a doctor in the family?',
     banner: 'She knows several',
     cta: 'Meet Nasreen Baji',

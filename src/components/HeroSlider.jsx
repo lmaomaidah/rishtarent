@@ -24,7 +24,6 @@ function HeroSlider() {
 
   return (
     <section className="stage" aria-label="Featured aunties">
-      <div className="stage__frame">
         {/* key makes React remount this block, so the slide-in animation plays again */}
         <div className="stage__text" key={'text' + index} aria-live={paused ? 'polite' : 'off'}>
           <p className="stage__question">{slide.question}</p>
@@ -34,8 +33,8 @@ function HeroSlider() {
           </Link>
         </div>
 
-        <figure className="stage__photo" key={'photo' + index}>
-          <img src={aunty.photo} alt={`Photo of ${aunty.name}`} />
+        <figure className={slide.cutout ? 'stage__photo stage__photo--cutout' : 'stage__photo'} key={'photo' + index}>
+          <img src={slide.cutout || aunty.photo} alt={`Photo of ${aunty.name}`} />
           <figcaption>{aunty.name}</figcaption>
         </figure>
 
@@ -56,7 +55,6 @@ function HeroSlider() {
             {paused ? 'Play' : 'Pause'}
           </button>
         </div>
-      </div>
     </section>
   )
 }

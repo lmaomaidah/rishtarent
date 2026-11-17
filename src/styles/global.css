@@ -328,14 +328,22 @@ main > * + * {
   font-weight: 700;
 }
 
+/* form fields: same 52px look as the search box */
 .field {
   display: grid;
   gap: var(--s1);
+  min-width: 0;
 }
 
+.field input[type="date"],
+.field input[type="number"],
 .field input[type="search"],
-.field select {
+.field input[type="tel"],
+.field input[type="text"],
+.field select,
+.field textarea {
   width: 100%;
+  min-width: 0;
   min-height: 52px;
   padding: 0 var(--s3);
   border: 3px solid var(--ink);
@@ -343,6 +351,28 @@ main > * + * {
   background: #fff;
   color: var(--ink);
   font: inherit;
+}
+
+.field textarea {
+  min-height: 120px;
+  padding: var(--s2) var(--s3);
+}
+
+.field input[aria-invalid="true"],
+.field select[aria-invalid="true"] {
+  border-color: var(--error);
+}
+
+.field-help {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.field-error {
+  margin: 0;
+  color: var(--error);
+  font-weight: 700;
 }
 
 .field--check {
@@ -358,28 +388,7 @@ main > * + * {
   accent-color: var(--teal-dark);
 }
 
-/* Aunty details page */
-.details-header {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--s3);
-  margin-bottom: var(--s4);
-}
-
-.package {
-  margin-bottom: var(--s3);
-}
-
-.package h3 {
-  margin-bottom: var(--s1);
-}
-
-@media (min-width: 700px) {
-  .details-header {
-    flex-direction: row;
-  }
-}
+/* Aunty details page: header, packages and extras are styled in the booking section at the end */
 
 /* Avatars: CSS initials, or a student-supplied photo */
 .avatar {
@@ -465,139 +474,7 @@ main > * + * {
   white-space: nowrap;
 }
 
-/* masthead: sun rays fanning out from the top, logo badge sitting on a mustard ribbon */
-.masthead {
-  background:
-    repeating-conic-gradient(from 0deg at 50% -20%, rgba(255, 255, 255, 0.35) 0 6deg, transparent 6deg 12deg),
-    #E9DCB2;
-  border-bottom: 3px solid var(--ink);
-  padding-block: var(--s3);
-}
-
-.masthead__inner {
-  display: grid;
-  gap: var(--s3);
-  justify-items: center;
-}
-
-.logo-badge {
-  display: grid;
-  justify-items: center;
-  background: var(--panel);
-  border: 3px solid var(--ink);
-  border-radius: 22px;
-  box-shadow: var(--shadow);
-  padding: var(--s2) var(--s4);
-  text-decoration: none;
-  position: relative;
-  z-index: 2;
-}
-
-.logo-badge__script {
-  font-family: Pacifico, cursive;
-  font-size: 2rem;
-  line-height: 1.3;
-  color: var(--navy);
-}
-
-.logo-badge__sub {
-  font-family: "Alfa Slab One", serif;
-  font-size: 0.7rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--orange-dark);
-}
-
-/* mustard ribbon nav with a darker folded end */
-.ribbon-nav {
-  width: 100%;
-  position: relative;
-}
-
-.ribbon-nav ul {
-  display: flex;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  background: linear-gradient(var(--mustard), #CB9A2C);
-  border: 3px solid var(--ink);
-  box-shadow: 0 4px 0 var(--ink);
-}
-
-.ribbon-nav li {
-  flex: 1;
-}
-
-.ribbon-nav li + li {
-  border-left: 2px dashed rgba(59, 42, 30, 0.45);
-}
-
-.ribbon-nav a {
-  display: grid;
-  justify-items: center;
-  padding: var(--s2) var(--s1);
-  font-family: "Alfa Slab One", serif;
-  font-size: 0.95rem;
-  line-height: 1.1;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: var(--orange-dark);
-  text-align: center;
-}
-
-.ribbon-nav small {
-  font-family: Pacifico, cursive;
-  font-size: 0.8rem;
-  text-transform: none;
-  color: var(--ink);
-}
-
-.ribbon-nav a:hover,
-.ribbon-nav a.active {
-  background: rgba(255, 248, 227, 0.55);
-  color: var(--navy);
-}
-
-.sim-banner {
-  margin: 0;
-  padding: var(--s2) var(--s3);
-  background: var(--navy);
-  color: #fff;
-  text-align: center;
-  font-weight: 700;
-  font-size: 0.9rem;
-}
-
 /* ----- stage: the big framed hero ----- */
-.stage {
-  position: relative;
-  margin-block: var(--s4) var(--s5);
-}
-
-/* the tilted orange board behind the frame (desktop only, see media query) */
-.stage::before {
-  content: "";
-  position: absolute;
-  inset: -14px -10px;
-  border: 3px solid var(--ink);
-  border-radius: 30px;
-  background:
-    radial-gradient(rgba(59, 42, 30, 0.18) 1.5px, transparent 1.6px) 0 0 / 10px 10px,
-    var(--orange);
-  display: none;
-}
-
-.stage__frame {
-  position: relative;
-  display: grid;
-  background: var(--slate);
-  border: 4px solid var(--ink);
-  border-radius: 26px;
-  padding: 12px;
-  gap: 12px;
-  box-shadow: var(--shadow);
-}
-
 /* left side: pale green pinstripes like old wallpaper */
 .stage__text {
   display: grid;
@@ -931,25 +808,6 @@ main > * + * {
 
 /* ----- wider screens ----- */
 @media (min-width: 700px) {
-  .masthead__inner {
-    grid-template-columns: auto 1fr;
-    align-items: center;
-    gap: 0;
-  }
-
-  /* logo overlaps the start of the ribbon */
-  .logo-badge {
-    margin-right: -18px;
-    transform: rotate(-3deg);
-  }
-
-  .ribbon-nav ul {
-    padding-left: 18px;
-  }
-
-  .ribbon-nav a {
-    font-size: 1.1rem;
-  }
 
   .callout {
     grid-template-columns: auto auto 1fr;
@@ -960,19 +818,6 @@ main > * + * {
 }
 
 @media (min-width: 900px) {
-  .stage {
-    margin-block: var(--s5);
-  }
-
-  .stage::before {
-    display: block;
-    transform: rotate(-1.5deg);
-  }
-
-  .stage__frame {
-    grid-template-columns: 1fr 1fr auto;
-    min-height: 380px;
-  }
 
   .stage__question {
     font-size: 2.4rem;
@@ -1012,34 +857,6 @@ main > * + * {
   text-align: center;
 }
 
-/* folded ribbon ends: a darker mustard tab tucked behind each end */
-.ribbon-nav::before,
-.ribbon-nav::after {
-  content: "";
-  position: absolute;
-  top: 12px;
-  width: 34px;
-  height: calc(100% - 4px);
-  background: var(--mustard-dark);
-  border: 3px solid var(--ink);
-  z-index: -1;
-}
-
-.ribbon-nav::before {
-  left: -22px;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 35% 50%);
-}
-
-.ribbon-nav::after {
-  right: -22px;
-  clip-path: polygon(0 0, 100% 0, 65% 50%, 100% 100%, 0 100%);
-}
-
-.masthead__inner {
-  position: relative;
-  z-index: 0;
-}
-
 /* one cream sheet holding the lower half of the page */
 .paper-sheet {
   background: var(--panel);
@@ -1057,18 +874,8 @@ main > * + * {
   color: var(--orange-dark);
 }
 
-@media (max-width: 699px) {
-  /* no room for the folded ends on a phone */
-  .ribbon-nav::before,
-  .ribbon-nav::after {
-    display: none;
-  }
-}
 
 @media (min-width: 700px) {
-  .ribbon-nav::before {
-    display: none; /* the logo badge covers the left end on wide screens */
-  }
 
   /* seal hangs off the left edge of the strip */
   /* seal is taken out of the grid and hung over the left edge */
@@ -1090,5 +897,604 @@ main > * + * {
 
   .paper-sheet {
     padding: var(--s5);
+  }
+}
+
+/* ===== Booking: details, packages, extras, form, summary, notices ===== */
+
+/* details header: big avatar on the left, facts beside it */
+.details-header {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--s3);
+  margin-bottom: var(--s4);
+}
+
+.details-header h1 {
+  margin-bottom: var(--s1);
+  font-size: 1.8rem;
+}
+
+.details-header p {
+  margin: 0 0 var(--s1);
+}
+
+.details-header .badge {
+  margin-top: var(--s1);
+}
+
+@media (min-width: 700px) {
+  .details-header h1 {
+    font-size: 2.2rem;
+  }
+}
+
+/* two columns from 900px; the summary column follows you down the page */
+.two-col {
+  display: grid;
+  gap: var(--s4);
+}
+
+.two-col > *,
+.summary-col {
+  min-width: 0;
+}
+
+/* package cards */
+.packages {
+  display: grid;
+  gap: var(--s3);
+  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+}
+
+.package {
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.package h3 {
+  margin-bottom: var(--s1);
+}
+
+.package ul {
+  margin: var(--s2) 0 var(--s3);
+}
+
+/* chosen package: teal border, teal tint, "Selected" strip and "Chosen" button say it too */
+.package--selected {
+  border-color: var(--teal-dark);
+  background: #DCEAF0;
+}
+
+.package .btn[aria-pressed="true"] {
+  background: var(--teal-dark);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .package {
+    transition: none;
+  }
+}
+
+/* extras: one card per add-on */
+.addons {
+  display: grid;
+  gap: var(--s3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+}
+
+.addon {
+  display: grid;
+  gap: var(--s2);
+  align-content: start;
+  margin: 0;
+}
+
+.addon h3,
+.addon p {
+  margin: 0;
+}
+
+/* quantity: minus, number, plus. Big tap targets */
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+}
+
+.stepper .btn {
+  flex: none;
+  width: 52px;
+  min-width: 52px;
+  padding: 0;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.stepper input[type="number"] {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 6em;
+  min-height: 52px;
+  padding: 0 var(--s2);
+  border: 3px solid var(--ink);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--ink);
+  font: 800 1.1rem Nunito, system-ui, sans-serif;
+  text-align: center;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* the +/- buttons do the job, so hide the spinner arrows */
+.stepper input[type="number"]::-webkit-inner-spin-button,
+.stepper input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* full-width buttons on phones */
+.package .btn,
+.addon .btn,
+.summary .btn,
+.notice .btn,
+form > .btn {
+  width: 100%;
+}
+
+/* notices: warn (mustard), error (red edge), ok (green edge) */
+.notice {
+  display: grid;
+  gap: var(--s2);
+  margin: 0;
+  padding: var(--s3) var(--s4);
+  border: 3px solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.notice h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.notice p,
+.notice ul {
+  margin: 0;
+}
+
+.notice--warn {
+  background: var(--mustard);
+  color: var(--ink);
+}
+
+.notice--error {
+  border-color: var(--error);
+}
+
+.notice--ok {
+  border-color: var(--ok);
+}
+
+@media (min-width: 700px) {
+  .notice .btn,
+  form > .btn {
+    width: auto;
+  }
+}
+
+/* summary: a receipt with dashed rules and a mustard total strip */
+.summary {
+  scroll-margin-top: var(--s3);
+}
+
+.summary h2 {
+  margin-bottom: var(--s3);
+  font-size: 1.2rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.summary__rows {
+  margin: 0 0 var(--s3);
+  padding: 0;
+  list-style: none;
+  border-top: 2px dashed rgba(59, 42, 30, 0.45);
+}
+
+.summary__rows li {
+  padding: var(--s2) 0;
+  border-bottom: 2px dashed rgba(59, 42, 30, 0.45);
+}
+
+.summary__row--discount {
+  color: var(--ok);
+  font-weight: 700;
+}
+
+/* the total strip runs edge to edge inside the panel border */
+.summary__total {
+  margin: var(--s3) calc(var(--s4) * -1);
+  padding: var(--s3) var(--s4);
+  background: var(--mustard);
+  border-block: 3px solid var(--ink);
+  font-family: "Alfa Slab One", serif;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.summary__total strong {
+  font-weight: 400;
+}
+
+/* text-style button, e.g. "Remove" */
+.btn--link {
+  min-height: 44px;
+  padding: 0 var(--s2);
+  border: 0;
+  background: none;
+  box-shadow: none;
+  color: var(--orange-dark);
+  text-decoration: underline;
+}
+
+.btn--link:active {
+  transform: none;
+  box-shadow: none;
+}
+
+.btn--link:focus-visible {
+  box-shadow: none;
+}
+
+/* sticky total bar on phones; hidden once the summary column is beside the form */
+.total-bar {
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s3);
+  padding: var(--s2) var(--s3) calc(var(--s2) + env(safe-area-inset-bottom));
+  background: var(--mustard);
+  border-top: 3px solid var(--ink);
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.total-bar a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+/* orange variant of the side panel */
+.side-panel--orange {
+  background: radial-gradient(rgba(255, 255, 255, 0.08) 1.5px, transparent 1.6px) 0 0 / 9px 9px, var(--orange-dark);
+}
+
+@media (min-width: 900px) {
+  .two-col {
+    grid-template-columns: 1fr 360px;
+    align-items: start;
+    gap: var(--s5);
+  }
+
+  .summary-col {
+    position: sticky;
+    top: var(--s3);
+  }
+
+  .total-bar {
+    display: none;
+  }
+}
+
+/* ===== Poster header: board, logo, tabs, ribbon nav, slate frame ===== */
+
+/* big light rays fanning out from the top of the page, over the paper dots */
+body {
+  background-image:
+    repeating-conic-gradient(from -90deg at 50% -10%, rgba(255, 255, 255, 0.4) 0 7deg, transparent 7deg 14deg),
+    radial-gradient(rgba(59, 42, 30, 0.06) 1px, transparent 1px),
+    radial-gradient(rgba(59, 42, 30, 0.04) 1px, transparent 1px);
+  background-size: 100% 900px, 6px 6px, 14px 14px;
+  background-repeat: no-repeat, repeat, repeat;
+}
+
+.poster {
+  position: relative;
+  margin-top: var(--s3);
+  margin-bottom: var(--s4);
+}
+
+/* the orange dotted board peeking out behind everything (wide screens only) */
+.poster::before {
+  content: "";
+  position: absolute;
+  inset: 40px 0 -18px;
+  border: 3px solid var(--ink);
+  border-radius: 34px;
+  background:
+    radial-gradient(rgba(59, 42, 30, 0.2) 1.5px, transparent 1.6px) 0 0 / 10px 10px,
+    var(--orange);
+  display: none;
+}
+
+.poster__top {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+}
+
+.logo-badge {
+  display: grid;
+  justify-items: center;
+  background: var(--panel);
+  border: 3px solid var(--ink);
+  border-radius: 22px;
+  box-shadow: var(--shadow);
+  padding: var(--s2) var(--s4);
+  text-decoration: none;
+}
+
+.logo-badge__script {
+  font-family: Pacifico, cursive;
+  font-size: 2rem;
+  line-height: 1.3;
+  color: var(--navy);
+}
+
+.logo-badge__sub {
+  font-family: "Alfa Slab One", serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--orange-dark);
+}
+
+/* small folder tabs above the ribbon, hidden on phones */
+.poster__tabs {
+  display: none;
+  gap: 4px;
+  align-items: flex-end;
+}
+
+.tab {
+  padding: 4px 14px 6px;
+  background: var(--slate);
+  color: #fff;
+  border: 3px solid var(--ink);
+  border-bottom: 0;
+  border-radius: 12px 12px 0 0;
+  font-family: Pacifico, cursive;
+  font-size: 0.85rem;
+}
+
+.tab--orange {
+  background: var(--orange-dark);
+  font-family: "Alfa Slab One", serif;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.tab--orange:hover {
+  background: var(--navy);
+}
+
+/* mustard ribbon nav */
+.ribbon-nav {
+  position: relative;
+  z-index: 2;
+  margin-top: var(--s3);
+}
+
+.ribbon-nav ul {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: linear-gradient(var(--mustard), #CB9A2C);
+  border: 3px solid var(--ink);
+  box-shadow: 0 4px 0 var(--ink);
+}
+
+.ribbon-nav li + li {
+  border-left: 2px dashed rgba(59, 42, 30, 0.45);
+}
+
+.ribbon-nav a {
+  display: grid;
+  justify-items: center;
+  padding: var(--s2) 2px;
+  font-family: "Alfa Slab One", serif;
+  font-size: 0.85rem;
+  line-height: 1.15;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--orange-dark);
+  text-align: center;
+}
+
+.ribbon-nav small {
+  font-family: Pacifico, cursive;
+  font-size: 0.75rem;
+  text-transform: none;
+  color: var(--ink);
+}
+
+.ribbon-nav a:hover,
+.ribbon-nav a.active {
+  background: rgba(255, 248, 227, 0.6);
+  color: var(--navy);
+}
+
+/* folded ribbon ends: darker mustard tabs tucked behind each end (wide screens) */
+.ribbon-nav::before,
+.ribbon-nav::after {
+  content: "";
+  position: absolute;
+  top: 12px;
+  width: 40px;
+  height: 100%;
+  background: var(--mustard-dark);
+  border: 3px solid var(--ink);
+  z-index: -1;
+  display: none;
+}
+
+.ribbon-nav::before {
+  left: -28px;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 35% 50%);
+}
+
+.ribbon-nav::after {
+  right: -28px;
+  clip-path: polygon(0 0, 100% 0, 65% 50%, 100% 100%, 0 100%);
+}
+
+/* slate frame hanging under the ribbon; holds the slider on the home page */
+.poster__frame {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 12px;
+  padding: 12px;
+  background: var(--slate);
+  border: 4px solid var(--ink);
+  border-top: 0;
+  border-radius: 0 0 26px 26px;
+  box-shadow: var(--shadow);
+}
+
+.poster__banner {
+  margin: 0;
+  color: #fff;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+/* ----- the slider inside the frame ----- */
+.stage {
+  display: grid;
+  gap: 12px;
+}
+
+/* wavy left edge on the photo panel, like the cut-out shapes in old ads */
+.stage__photo {
+  border-radius: 16px;
+}
+
+/* low-res photos get a halftone dot screen so the grain looks printed */
+.stage__photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(rgba(0, 0, 0, 0.22) 0.8px, transparent 1.1px) 0 0 / 4px 4px;
+  pointer-events: none;
+}
+
+/* rectangle photos fade into the diamond pattern in a soft oval */
+.stage__photo img {
+  -webkit-mask-image: radial-gradient(ellipse 60% 75% at 50% 35%, #000 55%, transparent 80%);
+  mask-image: radial-gradient(ellipse 60% 75% at 50% 35%, #000 55%, transparent 80%);
+}
+
+/* cut-out photo: whole figure standing in the panel, no fade */
+.stage__photo--cutout img {
+  object-fit: contain;
+  object-position: center bottom;
+  padding-top: var(--s3);
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+.stage__photo figcaption {
+  z-index: 1;
+}
+
+/* the strip under the poster sits close to it, like the reference */
+.callout {
+  margin-top: var(--s4);
+}
+
+@media (min-width: 700px) {
+  .poster::before {
+    display: block;
+  }
+
+  .poster__top {
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-inline: var(--s3);
+  }
+
+  /* logo hangs down over the ribbon */
+  .logo-badge {
+    transform: rotate(-3deg);
+    margin-bottom: -46px;
+  }
+
+  .logo-badge__script {
+    font-size: 2.6rem;
+  }
+
+  .poster__tabs {
+    display: flex;
+  }
+
+  .ribbon-nav {
+    margin: 0 -14px;
+  }
+
+  .ribbon-nav ul {
+    padding-left: 320px; /* room for the logo that hangs over it */
+  }
+
+  .ribbon-nav::before,
+  .ribbon-nav::after {
+    display: block;
+  }
+
+  .ribbon-nav a {
+    font-size: 1.05rem;
+  }
+
+  .ribbon-nav small {
+    font-size: 0.85rem;
+  }
+
+  .poster__frame {
+    margin-inline: 18px;
+  }
+}
+
+@media (min-width: 900px) {
+  .poster::before {
+    transform: rotate(-1.2deg);
+  }
+
+  .stage {
+    grid-template-columns: 1fr 1fr auto;
+    min-height: 380px;
+  }
+
+  .stage__photo {
+    border-radius: 110px 16px 16px 50px / 190px 16px 16px 110px;
   }
 }

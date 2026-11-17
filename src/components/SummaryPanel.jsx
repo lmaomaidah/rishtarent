@@ -25,8 +25,12 @@ function SummaryPanel({ packageId, summary, area, children }) {
           <li key={line.id}>{line.name} × {line.qty}: {formatRs(line.lineTotal)}</li>
         ))}
         <li>{travelRow}</li>
+        {summary.discountLines.map((line) => (
+          <li key={line.id} className="summary__row--discount">{line.label}: −{formatRs(line.amount)}</li>
+        ))}
         <li>Service fee: Rs 0</li>
       </ul>
+      {!summary.visitDate && <p>Pick a visit date to see season discounts.</p>}
       <p className="summary__total">
         Total: <strong aria-live="polite">{formatRs(summary.total)}</strong>
       </p>
