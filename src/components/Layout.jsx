@@ -38,7 +38,7 @@ function Layout() {
             <li><NavLink to="/aunties"><small>Meet the</small>Aunties</NavLink></li>
             <li>
               <NavLink to="/booking">
-                <small>Your booking</small>{selectedAunty ? selectedAunty.name.split(' ')[0] : 'Empty'}
+                <small>Your booking</small>{selectedAunty ? 'Started' : 'Empty'}
               </NavLink>
             </li>
             <li><NavLink to="/review"><small>Check your</small>Total</NavLink></li>

@@ -1005,7 +1005,7 @@ main > * + * {
   gap: var(--s2);
 }
 
-.stepper .btn {
+.stepper .btn.btn--secondary { /* beats ".addon .btn" below, which makes buttons full width */
   flex: none;
   width: 52px;
   min-width: 52px;
@@ -1497,4 +1497,18 @@ body {
   .stage__photo {
     border-radius: 110px 16px 16px 50px / 190px 16px 16px 110px;
   }
+}
+
+/* space between form fields so each label sits with its own box */
+form .field + .field {
+  margin-top: var(--s4);
+}
+
+form > .btn {
+  margin-top: var(--s4);
+}
+
+/* nav words never break in the middle */
+.ribbon-nav a {
+  overflow-wrap: normal;
 }
