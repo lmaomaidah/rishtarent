@@ -82,7 +82,7 @@ export const aunties = [
     yearsExperience: 31,
     slotsLeft: 4,
     verified: true,
-    photo: null,
+    photo: '/aunties/zubaida.jpg',
     tagline: '211 rishtas arranged. She remembers every single one.',
     bio: 'Begum Zubaida started in 1995, when a neighbour in Satellite Town asked her to mention her nephew to a family down the street. That wedding had 600 guests and she has not had a free weekend since. She taught Urdu at a government school for twenty-four years. This is why she corrects the grammar in every biodata she is handed. It is also why she can silence a drawing room by clearing her throat. Her method has not changed in three decades. She drinks exactly one cup of chai and asks each family member the same question separately, to see if the answers match. Everything goes into a blue register that nobody else is allowed to touch. She does not use a smartphone, so follow-ups happen by landline or in person. If your expectations are unrealistic she will say so before the samosas arrive. Bankers and teachers are her speciality because, in her words, \'they turn up on time and they read the form before signing it\'. She travels with her own driver and is rarely late. When she is late she brings mithai. Families who booked her in the nineties now book her for their children, and she considers this a normal result.',
   },

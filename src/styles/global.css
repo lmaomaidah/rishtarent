@@ -136,66 +136,6 @@ main > * + * {
   transform: none;
 }
 
-/* Header, simulated-site banner, footer */
-.site-header {
-  background: var(--panel);
-  border-bottom: 3px solid var(--ink);
-}
-
-.site-header__inner {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--s2) var(--s3);
-  padding-block: var(--s2);
-}
-
-.brand {
-  font-family: Pacifico, cursive;
-  font-size: 1.6rem;
-  color: var(--ink);
-  text-decoration: none;
-}
-
-.nav-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--s1) var(--s3);
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-list a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  font-weight: 700;
-}
-
-.nav-list a.active {
-  color: var(--teal-dark);
-}
-
-.sim-banner {
-  margin: 0;
-  padding: var(--s2) var(--s3);
-  background: var(--mustard);
-  color: var(--ink);
-  border-bottom: 3px solid var(--ink);
-  font-weight: 700;
-  text-align: center;
-}
-
-.site-footer {
-  margin-top: var(--s5);
-  padding-block: var(--s3);
-  border-top: 3px solid var(--ink);
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-
 /* Panel: the card look used everywhere */
 .panel {
   background: var(--panel);
@@ -295,23 +235,6 @@ main > * + * {
   color: var(--ink);
 }
 
-/* Hero: sunburst behind a panel that tilts on wide screens */
-.sunburst {
-  padding: var(--s4) var(--s3);
-  background: repeating-conic-gradient(from 0deg at 50% 100%, var(--mustard) 0 10deg, var(--paper) 10deg 20deg);
-  border: 3px solid var(--ink);
-  border-radius: var(--radius);
-  overflow: hidden;
-}
-
-.hero-panel {
-  margin-block: var(--s2);
-}
-
-.hero-panel h1 {
-  font-size: 2rem;
-}
-
 /* Cards grid */
 .cards-grid {
   display: grid;
@@ -392,11 +315,6 @@ main > * + * {
   }
 }
 
-@media (min-width: 900px) {
-  .hero-panel {
-    transform: rotate(-2deg);
-  }
-}
 
 /* Search and filter */
 .list-controls {
@@ -524,5 +442,653 @@ main > * + * {
 @media (prefers-reduced-motion: reduce) {
   .spinner {
     animation: none;
+  }
+}
+
+/* ===== Retro masthead, home stage and footer ===== */
+
+/* extra colours used only by the masthead and stage */
+:root {
+  --slate: #5B7D99;
+  --navy: #2E4A63;
+  --stripe-a: #E7E4B4;
+  --stripe-b: #DCD79F;
+  --mustard-dark: #B8891F;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* masthead: sun rays fanning out from the top, logo badge sitting on a mustard ribbon */
+.masthead {
+  background:
+    repeating-conic-gradient(from 0deg at 50% -20%, rgba(255, 255, 255, 0.35) 0 6deg, transparent 6deg 12deg),
+    #E9DCB2;
+  border-bottom: 3px solid var(--ink);
+  padding-block: var(--s3);
+}
+
+.masthead__inner {
+  display: grid;
+  gap: var(--s3);
+  justify-items: center;
+}
+
+.logo-badge {
+  display: grid;
+  justify-items: center;
+  background: var(--panel);
+  border: 3px solid var(--ink);
+  border-radius: 22px;
+  box-shadow: var(--shadow);
+  padding: var(--s2) var(--s4);
+  text-decoration: none;
+  position: relative;
+  z-index: 2;
+}
+
+.logo-badge__script {
+  font-family: Pacifico, cursive;
+  font-size: 2rem;
+  line-height: 1.3;
+  color: var(--navy);
+}
+
+.logo-badge__sub {
+  font-family: "Alfa Slab One", serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--orange-dark);
+}
+
+/* mustard ribbon nav with a darker folded end */
+.ribbon-nav {
+  width: 100%;
+  position: relative;
+}
+
+.ribbon-nav ul {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: linear-gradient(var(--mustard), #CB9A2C);
+  border: 3px solid var(--ink);
+  box-shadow: 0 4px 0 var(--ink);
+}
+
+.ribbon-nav li {
+  flex: 1;
+}
+
+.ribbon-nav li + li {
+  border-left: 2px dashed rgba(59, 42, 30, 0.45);
+}
+
+.ribbon-nav a {
+  display: grid;
+  justify-items: center;
+  padding: var(--s2) var(--s1);
+  font-family: "Alfa Slab One", serif;
+  font-size: 0.95rem;
+  line-height: 1.1;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--orange-dark);
+  text-align: center;
+}
+
+.ribbon-nav small {
+  font-family: Pacifico, cursive;
+  font-size: 0.8rem;
+  text-transform: none;
+  color: var(--ink);
+}
+
+.ribbon-nav a:hover,
+.ribbon-nav a.active {
+  background: rgba(255, 248, 227, 0.55);
+  color: var(--navy);
+}
+
+.sim-banner {
+  margin: 0;
+  padding: var(--s2) var(--s3);
+  background: var(--navy);
+  color: #fff;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+/* ----- stage: the big framed hero ----- */
+.stage {
+  position: relative;
+  margin-block: var(--s4) var(--s5);
+}
+
+/* the tilted orange board behind the frame (desktop only, see media query) */
+.stage::before {
+  content: "";
+  position: absolute;
+  inset: -14px -10px;
+  border: 3px solid var(--ink);
+  border-radius: 30px;
+  background:
+    radial-gradient(rgba(59, 42, 30, 0.18) 1.5px, transparent 1.6px) 0 0 / 10px 10px,
+    var(--orange);
+  display: none;
+}
+
+.stage__frame {
+  position: relative;
+  display: grid;
+  background: var(--slate);
+  border: 4px solid var(--ink);
+  border-radius: 26px;
+  padding: 12px;
+  gap: 12px;
+  box-shadow: var(--shadow);
+}
+
+/* left side: pale green pinstripes like old wallpaper */
+.stage__text {
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: var(--s3);
+  padding: var(--s4);
+  border: 3px solid var(--ink);
+  border-radius: 16px;
+  background: repeating-linear-gradient(90deg, var(--stripe-a) 0 14px, var(--stripe-b) 14px 16px);
+  animation: slide-in 0.5s ease-out;
+}
+
+.stage__question {
+  margin: 0;
+  font-family: Pacifico, cursive;
+  font-size: 1.9rem;
+  line-height: 1.25;
+  color: var(--orange-dark);
+}
+
+/* the banner strip, like "WE CAN HELP!" */
+.stage__banner {
+  margin: 0 -10px;
+  padding: var(--s2) var(--s4);
+  background: var(--mustard);
+  border-block: 3px solid var(--ink);
+  font-family: "Alfa Slab One", serif;
+  font-size: 1.6rem;
+  line-height: 1.15;
+  text-transform: uppercase;
+  color: var(--ink);
+  box-shadow: 0 5px 0 var(--mustard-dark);
+}
+
+.stage__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s2);
+  padding: var(--s2) var(--s3);
+  background: var(--panel);
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  font-family: "Alfa Slab One", serif;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  color: var(--navy);
+  text-decoration: none;
+}
+
+.stage__cta span {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: #fff;
+  transition: transform 0.2s;
+}
+
+.stage__cta:hover span {
+  transform: translateX(4px);
+}
+
+/* right side: navy diamond pattern behind a black-and-white photo */
+.stage__photo {
+  position: relative;
+  margin: 0;
+  min-height: 280px;
+  border: 3px solid var(--ink);
+  border-radius: 16px;
+  overflow: hidden;
+  background:
+    linear-gradient(45deg, rgba(255, 255, 255, 0.07) 25%, transparent 25% 75%, rgba(255, 255, 255, 0.07) 75%) 0 0 / 22px 22px,
+    linear-gradient(45deg, rgba(255, 255, 255, 0.07) 25%, transparent 25% 75%, rgba(255, 255, 255, 0.07) 75%) 11px 11px / 22px 22px,
+    var(--navy);
+  animation: fade-in 0.6s ease-out;
+}
+
+.stage__photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: grayscale(1) contrast(1.15);
+}
+
+.stage__photo figcaption {
+  position: absolute;
+  left: var(--s3);
+  bottom: var(--s3);
+  padding: var(--s1) var(--s3);
+  background: var(--orange-dark);
+  color: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  font-weight: 800;
+}
+
+/* numbered dots, like the 1 2 3 4 on the reference */
+.stage__dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--s2);
+}
+
+.stage__dot,
+.stage__pause {
+  min-width: 44px;
+  min-height: 44px;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  background: #6F8CA6;
+  color: #fff;
+  font: 800 1rem Nunito, sans-serif;
+  cursor: pointer;
+}
+
+.stage__dot[aria-pressed="true"] {
+  background: var(--orange-dark);
+}
+
+.stage__pause {
+  border-radius: 999px;
+  padding: 0 var(--s3);
+  background: var(--panel);
+  color: var(--ink);
+}
+
+@keyframes slide-in {
+  from { opacity: 0; transform: translateX(-24px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ----- callout strip under the stage ----- */
+.callout {
+  display: grid;
+  justify-items: center;
+  gap: var(--s3);
+  padding: var(--s4) var(--s3);
+  background: repeating-linear-gradient(90deg, var(--stripe-a) 0 14px, var(--stripe-b) 14px 16px);
+  border: 3px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  text-align: center;
+  margin-bottom: var(--s5);
+}
+
+.callout p {
+  margin: 0;
+}
+
+/* mustard seal with a zigzag edge */
+.seal {
+  display: grid;
+  place-items: center;
+  width: 110px;
+  height: 110px;
+  background: var(--mustard);
+  clip-path: polygon(50% 0, 61% 12%, 75% 6%, 79% 21%, 94% 25%, 88% 39%, 100% 50%, 88% 61%, 94% 75%, 79% 79%, 75% 94%, 61% 88%, 50% 100%, 39% 88%, 25% 94%, 21% 79%, 6% 75%, 12% 61%, 0 50%, 12% 39%, 6% 25%, 21% 21%, 25% 6%, 39% 12%);
+  font-family: "Alfa Slab One", serif;
+  font-size: 0.8rem;
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: var(--ink);
+  transition: transform 0.4s;
+}
+
+.seal span {
+  max-width: 64px;
+}
+
+.callout:hover .seal {
+  transform: rotate(20deg);
+}
+
+.callout__script {
+  padding: var(--s1) var(--s4);
+  background: var(--orange-dark);
+  border: 3px solid var(--ink);
+  border-radius: 14px;
+  font-family: Pacifico, cursive;
+  font-size: 1.7rem;
+  color: #fff;
+}
+
+.callout__text {
+  display: grid;
+  gap: var(--s1);
+}
+
+.callout__small {
+  font-style: italic;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.pill {
+  display: inline-block;
+  padding: 0 var(--s2);
+  background: var(--orange-dark);
+  color: #fff;
+  border-radius: 999px;
+  font-style: normal;
+}
+
+.callout__big {
+  font-family: "Alfa Slab One", serif;
+  font-size: 1.4rem;
+  line-height: 1.15;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+
+/* ----- side panels + main text, like the reference's lower half ----- */
+.home-columns {
+  display: grid;
+  gap: var(--s4);
+  margin-bottom: var(--s5);
+}
+
+.home-side {
+  display: grid;
+  gap: var(--s4);
+  align-content: start;
+}
+
+.side-panel {
+  border: 3px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: var(--s3) var(--s4) var(--s4);
+  color: #fff;
+}
+
+.side-panel--brown {
+  background: radial-gradient(rgba(255, 255, 255, 0.08) 1.5px, transparent 1.6px) 0 0 / 9px 9px, #7A4A2C;
+}
+
+.side-panel--teal {
+  background: radial-gradient(rgba(255, 255, 255, 0.08) 1.5px, transparent 1.6px) 0 0 / 9px 9px, var(--teal-dark);
+}
+
+.side-panel__title {
+  margin: 0 0 var(--s2);
+  font-family: Pacifico, cursive;
+  font-size: 1.5rem;
+}
+
+.side-panel__big {
+  font-family: "Alfa Slab One", serif;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+}
+
+.side-panel blockquote {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.side-panel blockquote footer {
+  margin-top: var(--s2);
+  font-weight: 800;
+  color: var(--mustard);
+}
+
+.home-main h2 {
+  margin: 0 0 var(--s2);
+  font-family: "Alfa Slab One", serif;
+  font-weight: 400;
+  color: var(--navy);
+}
+
+.home-main section + section {
+  margin-top: var(--s4);
+}
+
+/* numbered steps in orange circles */
+.steps {
+  list-style: none;
+  counter-reset: step;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--s2);
+}
+
+.steps li {
+  counter-increment: step;
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+}
+
+.steps li::before {
+  content: counter(step);
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid var(--ink);
+  background: var(--orange-dark);
+  color: #fff;
+  font-weight: 800;
+}
+
+.rules-list li::marker {
+  color: var(--orange-dark);
+}
+
+/* dark footer bar */
+.site-footer {
+  margin-top: var(--s5);
+  background: var(--navy);
+  border-top: 4px solid var(--mustard);
+  color: #fff;
+  font-size: 0.9rem;
+  padding-block: var(--s3);
+}
+
+/* ----- wider screens ----- */
+@media (min-width: 700px) {
+  .masthead__inner {
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 0;
+  }
+
+  /* logo overlaps the start of the ribbon */
+  .logo-badge {
+    margin-right: -18px;
+    transform: rotate(-3deg);
+  }
+
+  .ribbon-nav ul {
+    padding-left: 18px;
+  }
+
+  .ribbon-nav a {
+    font-size: 1.1rem;
+  }
+
+  .callout {
+    grid-template-columns: auto auto 1fr;
+    align-items: center;
+    text-align: left;
+    justify-items: start;
+  }
+}
+
+@media (min-width: 900px) {
+  .stage {
+    margin-block: var(--s5);
+  }
+
+  .stage::before {
+    display: block;
+    transform: rotate(-1.5deg);
+  }
+
+  .stage__frame {
+    grid-template-columns: 1fr 1fr auto;
+    min-height: 380px;
+  }
+
+  .stage__question {
+    font-size: 2.4rem;
+  }
+
+  .stage__banner {
+    font-size: 2.2rem;
+  }
+
+  .stage__dots {
+    flex-direction: column;
+  }
+
+  .home-columns {
+    grid-template-columns: 300px 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage__text,
+  .stage__photo {
+    animation: none;
+  }
+
+  .seal,
+  .stage__cta span {
+    transition: none;
+  }
+}
+
+/* ----- second pass: details that make it read like the print ad ----- */
+
+/* seal words stay whole */
+.seal {
+  overflow-wrap: normal;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* folded ribbon ends: a darker mustard tab tucked behind each end */
+.ribbon-nav::before,
+.ribbon-nav::after {
+  content: "";
+  position: absolute;
+  top: 12px;
+  width: 34px;
+  height: calc(100% - 4px);
+  background: var(--mustard-dark);
+  border: 3px solid var(--ink);
+  z-index: -1;
+}
+
+.ribbon-nav::before {
+  left: -22px;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 35% 50%);
+}
+
+.ribbon-nav::after {
+  right: -22px;
+  clip-path: polygon(0 0, 100% 0, 65% 50%, 100% 100%, 0 100%);
+}
+
+.masthead__inner {
+  position: relative;
+  z-index: 0;
+}
+
+/* one cream sheet holding the lower half of the page */
+.paper-sheet {
+  background: var(--panel);
+  border: 3px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: var(--s4) var(--s3);
+}
+
+.home-main h2:nth-of-type(1) {
+  color: var(--navy);
+}
+
+#good-heading {
+  color: var(--orange-dark);
+}
+
+@media (max-width: 699px) {
+  /* no room for the folded ends on a phone */
+  .ribbon-nav::before,
+  .ribbon-nav::after {
+    display: none;
+  }
+}
+
+@media (min-width: 700px) {
+  .ribbon-nav::before {
+    display: none; /* the logo badge covers the left end on wide screens */
+  }
+
+  /* seal hangs off the left edge of the strip */
+  /* seal is taken out of the grid and hung over the left edge */
+  .seal {
+    position: absolute;
+    left: -56px;
+    top: 50%;
+    translate: 0 -50%;
+    width: 130px;
+    height: 130px;
+  }
+
+  .callout {
+    position: relative;
+    grid-template-columns: auto 1fr;
+    padding-left: 100px;
+    margin-left: 56px;
+  }
+
+  .paper-sheet {
+    padding: var(--s5);
   }
 }

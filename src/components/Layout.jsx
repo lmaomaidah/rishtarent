@@ -14,14 +14,22 @@ function Layout() {
   return (
     <>
       <a className="skip-link" href="#main">Skip to main content</a>
-      <header className="site-header">
-        <div className="container site-header__inner">
-          <Link to="/" className="brand">RishtaRent</Link>
-          <nav aria-label="Main">
-            <ul className="nav-list">
-              <li><NavLink to="/" end>Home</NavLink></li>
-              <li><NavLink to="/aunties">Find an aunty</NavLink></li>
-              <li><NavLink to="/booking">Your booking: {selectedAunty ? selectedAunty.name : 'empty'}</NavLink></li>
+      <header className="masthead">
+        <div className="container masthead__inner">
+          <Link to="/" className="logo-badge">
+            <span className="logo-badge__script">RishtaRent</span>
+            <span className="logo-badge__sub">Aunties on call</span>
+          </Link>
+          {/* each link has a small top line and a big bottom line, like an old shop sign */}
+          <nav aria-label="Main" className="ribbon-nav">
+            <ul>
+              <li><NavLink to="/" end><small>Back to</small>Home</NavLink></li>
+              <li><NavLink to="/aunties"><small>Meet the</small>Aunties</NavLink></li>
+              <li>
+                <NavLink to="/booking">
+                  <small>Your booking</small>{selectedAunty ? selectedAunty.name.split(' ')[0] : 'Empty'}
+                </NavLink>
+              </li>
             </ul>
           </nav>
         </div>
@@ -30,8 +38,10 @@ function Layout() {
       <main id="main" className="container">
         <Outlet />
       </main>
-      <footer className="site-footer container">
-        <p>RishtaRent is a student project. Bookings are simulated and no money is taken.</p>
+      <footer className="site-footer">
+        <div className="container">
+          <p>RishtaRent is a student project. Bookings are simulated and no money is taken.</p>
+        </div>
       </footer>
     </>
   )
